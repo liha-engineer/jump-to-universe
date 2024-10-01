@@ -28,7 +28,7 @@ const GROUND_SPEED = 0.5;
 
 // 선인장
 const CACTI_CONFIG = [
-  { width: 48 / 1.5, height: 100 / 1.5, image: 'images/cactus_1.png' },
+  { width: 48 / 1.5, height: 100 / 1.5, image: 'images/rtan_obstacle_red.png' },
   { width: 98 / 1.5, height: 100 / 1.5, image: 'images/rtan_obstacle_navy.png' },
   { width: 68 / 1.5, height: 70 / 1.5, image: 'images/rtan_obstacle_grey.png' },
   { width: 68 / 1.5 , height: 70 / 1.5, image: 'images/rtan_obstacle_red.png' },
