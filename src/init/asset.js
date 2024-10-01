@@ -16,6 +16,7 @@ const basePath = path.join(__dirname, '../../assets');
 
 // 파일 한개 읽는 함수 - 우리는 이걸 이용해 파일 세개를 비동기 병렬로 읽을거임
 const readFileAsync = (filename) => {
+// 파일마다 처리속도가 달라서 모든 파일 읽어줄 때까지 기다려야 하기에 promise 객체를 써줄 것
   return new Promise((resolve, reject) => {
     fs.readFile(path.join(basePath, filename), 'utf8', (err, data) => {
       if (err) {
