@@ -25,6 +25,6 @@ try {
     console.log(assets);
     console.log('Assets loaded successfully');
 } catch (e) {
-    console.log('Failed to load game assets: ', e)
+    console.error('Failed to load game assets: ', e)
 }
 });
