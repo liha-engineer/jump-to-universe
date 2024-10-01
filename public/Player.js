@@ -27,15 +27,15 @@ class Player {
         this.yStandingPosition = this.y;
 
         this.standingStillImage = new Image();
-        this.standingStillImage.src = "images/standing_still.png";
+        this.standingStillImage.src = "images/rtan_crash.png";
         this.image = this.standingStillImage;
 
         // 달리기
         const dinoRunImage1 = new Image();
-        dinoRunImage1.src = "images/dino_run1.png";
+        dinoRunImage1.src = "images/rtan_running_a.png";
 
         const dinoRunImage2 = new Image();
-        dinoRunImage2.src = "images/dino_run2.png";
+        dinoRunImage2.src = "images/rtan_running_b.png";
 
         this.dinoRunImages.push(dinoRunImage1);
         this.dinoRunImages.push(dinoRunImage2);

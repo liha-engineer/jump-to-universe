@@ -29,16 +29,23 @@ const GROUND_SPEED = 0.5;
 // 선인장
 const CACTI_CONFIG = [
   { width: 48 / 1.5, height: 100 / 1.5, image: 'images/cactus_1.png' },
-  { width: 98 / 1.5, height: 100 / 1.5, image: 'images/cactus_2.png' },
-  { width: 68 / 1.5, height: 70 / 1.5, image: 'images/cactus_3.png' },
+  { width: 98 / 1.5, height: 100 / 1.5, image: 'images/rtan_obstacle_navy.png' },
+  { width: 68 / 1.5, height: 70 / 1.5, image: 'images/rtan_obstacle_grey.png' },
+  { width: 68 / 1.5 , height: 70 / 1.5, image: 'images/rtan_obstacle_red.png' },
 ];
 
 // 아이템
 const ITEM_CONFIG = [
-  { width: 50 / 1.5, height: 50 / 1.5, id: 1, image: 'images/items/pokeball_red.png' },
-  { width: 50 / 1.5, height: 50 / 1.5, id: 2, image: 'images/items/pokeball_yellow.png' },
-  { width: 50 / 1.5, height: 50 / 1.5, id: 3, image: 'images/items/pokeball_purple.png' },
-  { width: 50 / 1.5, height: 50 / 1.5, id: 4, image: 'images/items/pokeball_cyan.png' },
+  // { width: 50 / 1.5, height: 50 / 1.5, id: 1, image: 'images/items/pokeball_red.png' },
+  // { width: 50 / 1.5, height: 50 / 1.5, id: 2, image: 'images/items/pokeball_yellow.png' },
+  // { width: 50 / 1.5, height: 50 / 1.5, id: 3, image: 'images/items/pokeball_purple.png' },
+  // { width: 50 / 1.5, height: 50 / 1.5, id: 4, image: 'images/items/pokeball_cyan.png' },
+
+  { width: 50 , height: 50 , id: 1, image: 'images/items/meat1.png' },
+  { width: 50 , height: 50 , id: 2, image: 'images/items/meat2.png' },
+  { width: 50 , height: 50 , id: 3, image: 'images/items/meat3.png' },
+  { width: 50 , height: 50 , id: 4, image: 'images/items/meat4.png' },
+  // { width: 50 , height: 50 , id: 5, image: 'images/items/meat4.png' },
 ];
 
 // 게임 요소들
