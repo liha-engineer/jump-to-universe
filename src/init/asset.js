@@ -12,9 +12,9 @@ let gameAssets = {};
 const __filename = fileURLToPath(import.meta.url);
 // 파일이름 빼고 디렉토리 경로만 찾는 것
 const __dirname = path.dirname(__filename);
-const basePath = path.join(__dirname, '../../assets');
+const basePath = path.join(__dirname, '../../public/assets');
 
-// 파일 한개 읽는 함수 - 우리는 이걸 이용해 파일 세개를 비동기 병렬로 읽을거임
+// 파일 한개 읽는 함수
 const readFileAsync = (filename) => {
 // 파일마다 처리속도가 달라서 모든 파일 읽어줄 때까지 기다려야 하기에 promise 객체를 써줄 것
   return new Promise((resolve, reject) => {
@@ -28,7 +28,7 @@ const readFileAsync = (filename) => {
   });
 };
 
-// Primise.all(); -> 이거 써서 파일 세개 비동기로 읽음
+// Primise.all(); -> 이걸로 파일 세개 비동기 병렬로 읽을 것
 export const loadGameAssets = async () => {
   try {
     const [stages, items, itemUnlocks] = await Promise.all([
