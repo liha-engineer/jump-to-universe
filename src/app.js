@@ -5,7 +5,7 @@ import { loadGameAssets } from './init/asset.js';
 
 const app = express();
 const server = createServer(app);
-const PORT = 3000;
+const PORT = 4444;
 
 app.use(express.json())
 app.use(express.urlencoded({ extended : false }));
