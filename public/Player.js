@@ -1,7 +1,7 @@
 class Player {
   WALK_ANIMATION_TIMER = 200;
   walkAnimationTimer = this.WALK_ANIMATION_TIMER;
-  dinoRunImages = [];
+  RunImages = [];
 
   //점프 상태값
   jumpPressed = false;
@@ -31,14 +31,14 @@ class Player {
     this.image = this.standingStillImage;
 
     // 달리기
-    const dinoRunImage1 = new Image();
-    dinoRunImage1.src = 'images/rtan_running_a.png';
+    const RunImage1 = new Image();
+    RunImage1.src = 'images/rtan_running_a.png';
 
-    const dinoRunImage2 = new Image();
-    dinoRunImage2.src = 'images/rtan_running_b.png';
+    const RunImage2 = new Image();
+    RunImage2.src = 'images/rtan_running_b.png';
 
-    this.dinoRunImages.push(dinoRunImage1);
-    this.dinoRunImages.push(dinoRunImage2);
+    this.RunImages.push(RunImage1);
+    this.RunImages.push(RunImage2);
 
     // 키보드 설정
     // 등록된 이벤트가 있는 경우 삭제하고 다시 등록
@@ -64,7 +64,7 @@ class Player {
   update(gameSpeed, deltaTime) {
     this.run(gameSpeed, deltaTime);
 
-    if (this.jumpInProgress || this.gameSpeed == 0) {
+    if (this.jumpInProgress) {
       this.image = this.standingStillImage;
     }
 
@@ -106,10 +106,10 @@ class Player {
 
   run(gameSpeed, deltaTime) {
     if (this.walkAnimationTimer <= 0) {
-      if (this.image === this.dinoRunImages[0]) {
-        this.image = this.dinoRunImages[1];
+      if (this.image === this.RunImages[0]) {
+        this.image = this.RunImages[1];
       } else {
-        this.image = this.dinoRunImages[0];
+        this.image = this.RunImages[0];
       }
       this.walkAnimationTimer = this.WALK_ANIMATION_TIMER;
     }

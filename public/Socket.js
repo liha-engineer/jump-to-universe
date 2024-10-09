@@ -1,6 +1,7 @@
+// import { PORT } from '../src/app.js';
 import { CLIENT_VERSION } from './Constants.js';
 
-const socket = io('http://localhost:3000', {
+const socket = io(`http://localhost:7777`, {
   query: {
     clientVersion: CLIENT_VERSION,
   },
@@ -23,6 +24,7 @@ const sendEvent = (handlerId, payload) => {
     handlerId,
     payload,
   });
+  console.log('야 이런 이벤트 전송한드아', payload)
 };
 
 export { sendEvent };

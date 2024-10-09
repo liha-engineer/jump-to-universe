@@ -2,11 +2,12 @@
   "name": "item",
   "version": "1.0.0",
   "data": [
-    { "id":  1, "score": 10 },
-    { "id":  2, "score": 20 },
-    { "id":  3, "score": 30 },
-    { "id":  4, "score": 40 },
-    { "id":  5, "score": 50 },
-    { "id":  6, "score": 60 }
+    { "id":  1, "score": 10, "width": 50, "height": 50, "interval": 5000, "image": "images/items/meat1.png" },
+    { "id":  2, "score": 35, "width": 50 , "height": 50, "interval": 8000, "image": "images/items/meat2.png" },
+    { "id":  3, "score": 50, "width": 50 , "height": 50, "interval": 10000, "image": "images/items/meat3.png" },
+    { "id":  4, "score": 70, "width": 50 , "height": 50, "interval": 15000, "image": "images/items/meat4.png" },
+    { "id":  5, "score": 100, "width": 50 , "height": 50, "interval": 30000, "image": "images/items/meat5.png"},
+    { "id":  6, "score": 250, "width": 50 , "height": 50, "interval": 55000, "image": "images/items/meat6.png" }
   ]
 }
+
