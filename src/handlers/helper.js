@@ -6,8 +6,8 @@ import handlerMappings from "./handlerMapping.js";
 
 
 export const handleDisconnect = (socket, uuid) => {
-    removeUser(socket.id);
-    console.log(`User disconnected: ${socket.id}`);
+    removeUser(socket.id, uuid);
+    console.log(`User disconnected: ${uuid}, socketID: ${socket.id}`);
     console.log(`Current users: `, getUser());
 }
 
@@ -16,13 +16,21 @@ export const handleDisconnect = (socket, uuid) => {
 // 2스테이지 : 1000점 -> 2점씩 ++
 
 export const handleConnection = (socket, uuid) => {
-    console.log(`New user connected!: ${uuid} with socket ID ${socket.id}`);
+    console.log(`New user connected!: ${uuid}, with socket ID: ${socket.id}`);
     console.log(`Current users: `, getUser());
 
+    // 접속하자마자 바로 시작이라서 바로 스테이지 만든다
     createStage(uuid);
+    const { stages } = getGameAssets();
+    if(!stages) {
+        socket.emit('response', {status : "fail", message : "Stage Not found"});
+        return;
+    }
+    setStage(uuid, stages.data[0].id);
+    console.log('이건 helper.js line 30 - 현재 스테이지는요: ', getStage(uuid))
     
+    // 이거 본인한테 보내는거임
     socket.emit('connection', { uuid });
-
 }
 
 // 핸들러 맵핑 객체 만들었으니, 유저에게 받은 메시지 쪼개서 거기에 있는 핸들러를 실행시켜주는 함수 필요

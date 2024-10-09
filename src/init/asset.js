@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 
 let gameAssets = {};
 
-// ES6 문법 이전엔 이런게 있었는데 지금은 사용 안한다. 그거랑 비슷하게만 써 보자
+// ES6 문법 이전엔 이런게 있었는데 지금은 사용 안한다. 그거랑 형태만 비슷하게 써 보자
 // __dirname
 // __filename
 
@@ -40,6 +40,9 @@ export const loadGameAssets = async () => {
     gameAssets = { stages, items, itemUnlocks };
     return gameAssets;
   } catch (e) {
+    // 여기서 throw new Error로 에러를 던졌는데, 
+    // 얘가 어디로 가냐면 이 loadGameAssets을 호출한 상위함수로 에러가 던져진다
+    // 그래서 얘를 호출하는 상위함수에 가서 이 에러 핸들링을 한번 더 처리해줘야 함
     throw new Error('Failed to load game assets: ' + e.message);
   }
 };

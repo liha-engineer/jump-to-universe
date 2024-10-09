@@ -2,11 +2,12 @@
 // 일정 점수가 되면 다음 스테이지로 이동한다
 import { getStage, setStage } from '../models/stage.model.js';
 import { getGameAssets } from '../init/asset.js';
+import { calculateTotalScore } from '../utils/calculateTotalScore.js';
 
 export const moveStageHandler = (userId, payload) => {
   // 클라이언트가 currnetStage, 다음에 넘어갈 targetStage 정보 전해줄 것 - 검증 필요
-  // 우선 유저의 현재 스테이지 정보 불러옴
 
+  // 우선 유저의 현재 스테이지 정보 불러오고, 최대 스테이지 ID 찾는다
   let currentStages = getStage(userId);
   if (!currentStages.length) {
     return { status: 'fail', message: 'No stages found for this user' };
@@ -21,29 +22,29 @@ export const moveStageHandler = (userId, payload) => {
     return { status: 'fail', message: 'Current stage does not match' };
   }
 
-    // 넘어갈 targetStage가 유효한지 검증
-    const { stages } = getGameAssets();
-    if (!stages.data.some((stage) => stage.id === payload.targetStage)) {
-      return { status: 'fail', message: 'Target stage does not match' };
-    }
+  // 넘어갈 targetStage가 유효한지 검증
+  const { stages } = getGameAssets();
+  if (!stages.data.some((stage) => stage.id === payload.targetStage)) {
+    return { status: 'fail', message: 'Target stage does not match' };
+  }
 
   // 유저의 현재 점수와 DB에 저장된 점수를 비교해서, 유저의 점수가 더 높으면 다음 스테이지로 올려준다 -> 이건 과제로
 
-  // 점수 검증 - 현재 시간에서 시작한 시간만큼 빼서 그 차이만큼 계산한게 우리의 점수가 될 것. (초당 1점으로 계산한다고 가정)
-  const serverTime = Date.now(); // 현재 타임스탬프를 구함
-  const elapsedTime = (serverTime - currentStage.timestamp) / 1000;
-
-  // 1스테이지 -> 2스테이지 넘어간다 치면 점수가 100점이어야 한다 (1스테이지는 초당 1점으로 가정)
-  // elapsed Time이 각 스테이지별 점수보다 작거나 너무 초과한 경우 시간이 안 흐르거나 이상하게 흐르거나 한다는 것이므로 검증 필요
-  // 하드코딩 하고싶지 않으면 stage.json의 data중 score값을 가져와 그걸 기준으로 조건문을 만들면 될것 
-  
-  console.log('elapsedTime의 if문 이전')
-  
-  if (elapsedTime < 10 || elapsedTime > 10.5) {
-    return { status: 'fail', message: 'Invalid elapsed time' };
+  const targetStageInfo = stages.data.find((stage) => stage.id === payload.targetStage);
+  if (!targetStageInfo) {
+    return { status: 'fail', message: 'Target stage not found' };
   }
-  console.log('elapsedTime의 if문 이후')
+  
+  // 점수 검증
+  const serverTime = Date.now(); // 현재 타임스탬프를 구함
+  const userItems = getUserItems(userId);
+  const totalScore = calculateTotalScore(currentStages, serverTime, true, userItems);
 
+  if (targetStageInfo.score > totalScore) {
+    return { status: 'fail', message: 'Invalid elapsed Time!' };
+  }
+
+  // 유저의 다음 스테이지 정보 업데이트 + 현재 시간
   setStage(userId, payload.targetStage, serverTime);
-  return { status: 'success' };
+  return { status: 'success', hanlder: 11 };
 };

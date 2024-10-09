@@ -5,7 +5,7 @@ import { loadGameAssets } from './init/asset.js';
 
 const app = express();
 const server = createServer(app);
-const PORT = 4444;
+const PORT = 7777;
 
 app.use(express.json())
 app.use(express.urlencoded({ extended : false }));
@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
 server.listen(PORT, async () => {
     console.log(`Server is running on port ${PORT}`)
     // 서버가 시동될때 CDN을 읽어야 하니까 여기쯤에 파일 리딩 구문이 들어가야 한다
-
 try {
     const assets = await loadGameAssets();
     console.log(assets);

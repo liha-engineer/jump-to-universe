@@ -16,7 +16,7 @@ export const gameEnd = (uuid, payload) => {
   const { timestamp: gameEndTime, score } = payload;
   const stages = getStage(uuid);
 
-  if (stages.length) {
+  if (!stages.length) {
     return { status: 'fail', message: 'No stages found for this user' };
   }
   // 각 스테이지의 지속시간을 계산하여 총점수 계산
@@ -33,11 +33,13 @@ export const gameEnd = (uuid, payload) => {
       stageEndTime = stages[index + 1].timestamp;
     }
 
+
     // 그 스테이지에서 얼마동안 있었냐?
     const stageDuration = (stageEndTime - stage.timestamp) / 1000;
-    // 1초당 1점이라 가정하면 그냥 더한다
-    totalscore += stageDuration;
-    // 그러면, 1초당 1점이 아니라면? 있던 시간 * 스테이지별 점수를 해줘서 더해야 할것
+    const scorePerSecond = stages.data[index].scorePerSecond;
+    // 1초당 1점이라 가정하면 그냥 더한다. 1초당 1점이 아니라면? 있던 시간 * 스테이지별 점수를 해줘서 더해야 할것
+    totalscore += stageDuration * scorePerSecond;
+  
   });
 
   // 점수와 타임스탬프 검증 - 오차범위는 5 정도
