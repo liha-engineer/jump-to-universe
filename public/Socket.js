@@ -1,4 +1,3 @@
-// import { PORT } from '../src/app.js';
 import { CLIENT_VERSION } from './Constants.js';
 
 const socket = io(`http://localhost:7777`, {
@@ -24,7 +23,7 @@ const sendEvent = (handlerId, payload) => {
     handlerId,
     payload,
   });
-  console.log('야 이런 이벤트 전송한드아', payload)
+  console.log('sendEvent의 payload 내용: ', payload);
 };
 
 export { sendEvent };
