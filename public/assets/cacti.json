@@ -1,0 +1,10 @@
+{
+  "name": "cacti",
+  "version": "1.0.0",
+  "data": [
+    { "width": 39, "height": 70, "image": "images/rtan_obstacle_red.png" },
+    { "width": 65, "height": 70, "image": "images/rtan_obstacle_red.png" },
+    { "width": 39, "height": 45, "image": "images/rtan_obstacle_red.png" },
+    { "width": 39, "height": 45, "image": "images/rtan_obstacle_red.png" }
+  ]
+}
