@@ -5,10 +5,10 @@ import Score from './Score.js';
 import ItemController from './ItemController.js';
 import './Socket.js';
 import { sendEvent } from './Socket.js';
-import itemTable from './assets/item.json' with {type : "json"}
-import itemUnlockTable from './assets/item_unlock.json' with {type : "json"}
-import stageTable from './assets/stage.json' with {type : "json"}
-import CactiTable from './assets/cacti.json' with {type : "json"}
+import itemTable from './assets/item.json' with { type: 'json' };
+import itemUnlockTable from './assets/item_unlock.json' with { type: 'json' };
+import stageTable from './assets/stage.json' with { type: 'json' };
+import CactiTable from './assets/cacti.json' with { type: 'json' };
 
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
@@ -22,8 +22,8 @@ const GAME_HEIGHT = 300;
 
 // 플레이어
 // 800 * 200 사이즈의 캔버스에서는 이미지의 기본크기가 크기때문에 1.5로 나눈 값을 사용. (비율 유지)
-const PLAYER_WIDTH = 88 / 1.5; 
-const PLAYER_HEIGHT = 94 / 1.5; 
+const PLAYER_WIDTH = 88 / 1.5;
+const PLAYER_HEIGHT = 94 / 1.5;
 const MAX_JUMP_HEIGHT = GAME_HEIGHT;
 const MIN_JUMP_HEIGHT = 150;
 
@@ -54,13 +54,13 @@ let waitingToStart = true;
 
 // 오디오 넣어보기
 const bgmSound = new Audio();
-bgmSound.src = "./sounds/bgm.mp3";
+bgmSound.src = './sounds/bgm.mp3';
 const jumpSound = new Audio();
 jumpSound.src = './sounds/jump.mp3';
 const scoreSound = new Audio();
-scoreSound.src = "./sounds/score.mp3";
+scoreSound.src = './sounds/score.mp3';
 const defeatSound = new Audio();
-defeatSound.src = "./sounds/defeat1.mp3";
+defeatSound.src = './sounds/defeat1.mp3';
 
 function createSprites() {
   // 비율에 맞는 크기
@@ -84,7 +84,6 @@ function createSprites() {
   );
 
   track = new Track(ctx, trackWidthInGame, trackHeightInGame, TRACK_SPEED, scaleRatio);
-  
 
   const cactiImages = CACTI_CONFIG.map((cactus) => {
     const image = new Image();
@@ -172,7 +171,7 @@ function reset() {
   itemController.reset();
   score.reset();
   gameSpeed = GAME_SPEED_START;
-  sendEvent(2, { timestamp : Date.now()})
+  sendEvent(2, { timestamp: Date.now() });
 }
 
 function setupGameReset() {
@@ -209,7 +208,7 @@ function gameLoop(currentTime) {
     bgmSound.volume = 0.2;
     bgmSound.play();
     // update
-    track.update(gameSpeed, deltaTime)
+    track.update(gameSpeed, deltaTime);
     // 선인장
     cactiController.update(gameSpeed, deltaTime);
     itemController.update(gameSpeed, deltaTime);
@@ -233,18 +232,15 @@ function gameLoop(currentTime) {
     setTimeout(() => {
       scoreSound.pause(); // 일정 시간 후에 오디오 일시정지
       scoreSound.currentTime = 0; // 오디오 재생 위치를 시작으로 재설정
-    }, 350); 
-    
+    }, 350);
   }
 
   // draw
   track.draw();
   player.draw();
   cactiController.draw();
-  // ground.draw();
   score.draw();
   itemController.draw();
- 
 
   if (gameover) {
     bgmSound.pause();

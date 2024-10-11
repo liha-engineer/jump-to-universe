@@ -16,6 +16,6 @@ const registerHandler = (io) => {
     // 접속해제시 이벤트
     socket.on('disconnect', (socket) => handleDisconnect(socket, userUUID));
   });
-}
+};
 
 export default registerHandler;
