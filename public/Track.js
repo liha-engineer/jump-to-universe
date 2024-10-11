@@ -1,6 +1,5 @@
-class Wall {
-  wallImages = [];
-
+class Track {
+ 
   constructor(ctx, width, height, speed, scaleRatio) {
     this.ctx = ctx;
     this.canvas = ctx.canvas;
@@ -22,7 +21,6 @@ class Wall {
 
   draw() {
     // 배경 이어붙이기
-    // (이미지, 캔버스 x좌표, 캔버스 y좌표, 이미지 넓이, 이미지 높이)
     this.ctx.drawImage(this.track1, this.x, this.y, this.width, this.height);
     this.ctx.drawImage(this.track1, this.x + this.width, this.y, this.width, this.height);
 
@@ -37,4 +35,4 @@ class Wall {
   }
 }
 
-export default Wall;
+export default Track;
