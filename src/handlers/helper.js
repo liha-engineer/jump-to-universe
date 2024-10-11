@@ -1,6 +1,6 @@
 import { CLIENT_VERSION } from '../../constants.js';
 import { getGameAssets } from '../init/asset.js';
-import { initializeStage, getStage, setStage } from '../models/stage.model.js';
+import { initializeStage, setStage } from '../models/stage.model.js';
 import { getUser, removeUser } from '../models/user.model.js';
 import handlerMappings from './handlerMapping.js';
 
@@ -22,7 +22,6 @@ export const handleConnection = (socket, uuid) => {
     return;
   }
   setStage(uuid, stages.data[0].id);
-  console.log('helper.js line 30 - 현재 스테이지: ', getStage(uuid));
 
   socket.emit('connection', { uuid });
 };
@@ -33,6 +32,7 @@ export const handlerEvent = (io, socket, data) => {
     return;
   }
 
+  const handler = handlerMappings[data.handlerId];
   if (!handler) {
     socket.emit('response', { status: 'fail', message: 'Handler not found' });
   }
