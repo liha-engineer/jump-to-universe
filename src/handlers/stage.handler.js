@@ -1,6 +1,7 @@
 // 스테이지는 하나씩 이동한다
 // 일정 점수가 되면 다음 스테이지로 이동한다
 import { getStage, setStage } from '../models/stage.model.js';
+import { getuserItems } from '../models/item.model.js';
 import { getGameAssets } from '../init/asset.js';
 import { calculateTotalScore } from '../utils/calculateTotalScore.js';
 
@@ -34,10 +35,10 @@ export const moveStageHandler = (userId, payload) => {
   if (!targetStageInfo) {
     return { status: 'fail', message: 'Target stage not found' };
   }
-  
+
   // 점수 검증
   const serverTime = Date.now(); // 현재 타임스탬프를 구함
-  const userItems = getUserItems(userId);
+  const userItems = getuserItems(userId);
   const totalScore = calculateTotalScore(currentStages, serverTime, true, userItems);
 
   if (targetStageInfo.score > totalScore) {
