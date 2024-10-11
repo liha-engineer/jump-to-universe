@@ -5,12 +5,16 @@ import Score from './Score.js';
 import ItemController from './ItemController.js';
 import './Socket.js';
 import { sendEvent } from './Socket.js';
+import itemTable from './assets/item.json' with {type : "json"}
+import itemUnlockTable from './assets/item_unlock.json' with {type : "json"}
+import stageTable from './assets/stage.json' with {type : "json"}
+import CactiTable from './assets/cacti.json' with {type : "json"}
 
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
 const GAME_SPEED_START = 1;
-const GAME_SPEED_INCREMENT = 0.000005;
+const GAME_SPEED_INCREMENT = 0.00001;
 
 // 게임 크기
 const GAME_WIDTH = 800;
@@ -18,8 +22,8 @@ const GAME_HEIGHT = 300;
 
 // 플레이어
 // 800 * 200 사이즈의 캔버스에서는 이미지의 기본크기가 크기때문에 1.5로 나눈 값을 사용. (비율 유지)
-const PLAYER_WIDTH = 88 / 1.5; // 58
-const PLAYER_HEIGHT = 94 / 1.5; // 62
+const PLAYER_WIDTH = 88 / 1.5; 
+const PLAYER_HEIGHT = 94 / 1.5; 
 const MAX_JUMP_HEIGHT = GAME_HEIGHT;
 const MIN_JUMP_HEIGHT = 150;
 
@@ -29,12 +33,10 @@ const TRACK_HEIGHT = 300;
 const TRACK_SPEED = 0.5;
 
 // 선인장
-const CACTI_CONFIG = [
-  { width: 48 / 1.5, height: 100 / 1.5, image: 'images/rtan_obstacle_red.png' },
-  { width: 88 / 1.5, height: 100 / 1.5, image: 'images/rtan_obstacle_red.png' },
-  { width: 68 / 1.5, height: 70 / 1.5, image: 'images/rtan_obstacle_red.png' },
-  { width: 68 / 1.5 , height: 70 / 1.5, image: 'images/rtan_obstacle_red.png' },
-];
+const CACTI_CONFIG = CactiTable.data;
+const ITEM_CONFIG = itemTable.data;
+const ITEM_UNLOCK_CONFIG = itemUnlockTable.data;
+const STAGE_DATA = stageTable.data;
 
 // 게임 요소들
 let player = null;
@@ -107,9 +109,9 @@ function createSprites() {
     };
   });
 
-  itemController = new ItemController(ctx, itemImages, scaleRatio, TRACK_SPEED);
+  itemController = new ItemController(ctx, itemImages, scaleRatio, TRACK_SPEED, STAGE_DATA);
 
-  score = new Score(ctx, scaleRatio);
+  score = new Score(ctx, scaleRatio, STAGE_DATA, ITEM_CONFIG, itemController);
 }
 
 function getScaleRatio() {
@@ -144,7 +146,7 @@ function showGameOver() {
   ctx.fillStyle = 'salmon';
   const x = canvas.width / 5;
   const y = canvas.height / 2.1;
-  ctx.fillText('404 ruined your meat! :(', x, y);
+  ctx.fillText('404 ruined your foods! :(', x, y);
 }
 
 function showStartGameText() {
@@ -153,7 +155,7 @@ function showStartGameText() {
   ctx.fillStyle = 'white';
   const x = canvas.width / 8;
   const y = canvas.height / 2.1;
-  ctx.fillText('Press space for get meat!', x, y);
+  ctx.fillText('Press space for get foods!', x, y);
 }
 
 function updateGameSpeed(deltaTime) {
@@ -167,6 +169,7 @@ function reset() {
 
   track.reset();
   cactiController.reset();
+  itemController.reset();
   score.reset();
   gameSpeed = GAME_SPEED_START;
   sendEvent(2, { timestamp : Date.now()})
