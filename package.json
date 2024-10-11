@@ -5,7 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "prettier" : "prettier --write '**/*.{js,ts,tsx}'"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
