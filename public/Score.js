@@ -101,12 +101,12 @@ class Score {
     const stageNumber = this.currentStage;
 
     const fontSize = 20 * this.scaleRatio;
-    this.ctx.font = `bold ${fontSize}px serif`;
+    this.ctx.font = `bold ${fontSize}px Arial`;
     this.ctx.fillStyle = '#fefefe';
 
     const scoreX = this.canvas.width - 75 * this.scaleRatio;
-    const highScoreX = scoreX - 125 * this.scaleRatio;
-    const stageNumberX = highScoreX - 580 * this.scaleRatio;
+    const highScoreX = scoreX - 150 * this.scaleRatio;
+    const stageNumberX = highScoreX - 530 * this.scaleRatio;
 
     const stageIndication = parseInt(stageNumber.toString().at(-1)) + 1;
     const scorePadded = Math.floor(this.score).toString().padStart(6, 0);
@@ -114,7 +114,7 @@ class Score {
 
     this.ctx.fillText(`Stage ${stageIndication}`, stageNumberX, y);
     this.ctx.fillText(scorePadded, scoreX, y);
-    this.ctx.fillText(`HI: ${highScorePadded}`, highScoreX, y);
+    this.ctx.fillText(`HIGH: ${highScorePadded}`, highScoreX, y);
   }
 }
 
