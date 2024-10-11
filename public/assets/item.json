@@ -2,12 +2,12 @@
   "name": "item",
   "version": "1.0.0",
   "data": [
-    { "id":  1, "score": 10, "width": 50, "height": 50, "interval": 5000, "image": "images/items/meat1.png" },
-    { "id":  2, "score": 35, "width": 50 , "height": 50, "interval": 8000, "image": "images/items/meat2.png" },
-    { "id":  3, "score": 50, "width": 50 , "height": 50, "interval": 10000, "image": "images/items/meat3.png" },
-    { "id":  4, "score": 70, "width": 50 , "height": 50, "interval": 15000, "image": "images/items/meat4.png" },
-    { "id":  5, "score": 100, "width": 50 , "height": 50, "interval": 30000, "image": "images/items/meat5.png"},
-    { "id":  6, "score": 250, "width": 50 , "height": 50, "interval": 55000, "image": "images/items/meat6.png" }
+    { "id":  1, "score": 10, "width": 50, "height": 50, "image": "images/items/item1.png" },
+    { "id":  2, "score": 35, "width": 50 , "height": 50, "image": "images/items/item2.png" },
+    { "id":  3, "score": 75, "width": 50 , "height": 50, "image": "images/items/item3.png" },
+    { "id":  4, "score": 120, "width": 50 , "height": 50, "image": "images/items/item4.png" },
+    { "id":  5, "score": 250, "width": 50 , "height": 50, "image": "images/items/item5.png" },
+    { "id":  6, "score": 450, "width": 50 , "height": 50, "image": "images/items/item6.png" }
   ]
 }
 
