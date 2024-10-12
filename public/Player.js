@@ -1,3 +1,5 @@
+import { jumpSound } from "./index.js";
+
 class Player {
   WALK_ANIMATION_TIMER = 200;
   walkAnimationTimer = this.WALK_ANIMATION_TIMER;
@@ -83,8 +85,9 @@ class Player {
         this.y > this.canvas.height - this.minJumpHeight ||
         (this.y > this.canvas.height - this.maxJumpHeight && this.jumpPressed)
       ) {
-        // 아무튼 위의 내용은 버튼을 눌렀을때 올라가는 조건
         this.y -= this.JUMP_SPEED * deltaTime * this.scaleRatio;
+        jumpSound.volume = 0.2;
+        jumpSound.play();
       } else {
         this.falling = true;
       }

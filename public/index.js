@@ -55,7 +55,7 @@ let waitingToStart = true;
 // 오디오 넣어보기
 const bgmSound = new Audio();
 bgmSound.src = './sounds/bgm.mp3';
-const jumpSound = new Audio();
+export const jumpSound = new Audio();
 jumpSound.src = './sounds/jump.mp3';
 const scoreSound = new Audio();
 scoreSound.src = './sounds/score.mp3';
@@ -228,6 +228,7 @@ function gameLoop(currentTime) {
   const collideWithItem = itemController.collideWith(player);
   if (collideWithItem && collideWithItem.itemId) {
     score.getItem(collideWithItem.itemId);
+    scoreSound.volume = 0.3;
     scoreSound.play();
     setTimeout(() => {
       scoreSound.pause(); // 일정 시간 후에 오디오 일시정지
