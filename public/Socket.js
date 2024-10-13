@@ -4,7 +4,7 @@ const socket = io(`http://liha-engineer.shop:7777`, {
   query: {
     clientVersion: CLIENT_VERSION,
   },
-  cors: {origin : '*'}
+  // cors: {origin : '*'}
   
 });
 
