@@ -4,6 +4,8 @@ const socket = io(`http://localhost:7777`, {
   query: {
     clientVersion: CLIENT_VERSION,
   },
+  cors: {origin : '*'}
+  
 });
 
 let userId = null;
