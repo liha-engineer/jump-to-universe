@@ -1,19 +1,17 @@
-# 웹소켓 게임 만들기! 
-
-### Rtan RUN RUN! ~Jump to universe~
+## Rtan RUN RUN! ~ Jump to universe ~
 
 ### 👥인원
 개인과제, 단독진행
 
-## 📆프로젝트 기간
+### 📆프로젝트 기간
 2024.09.27 ~ 10.14
 
-## 🛠️기술 스택
+### 🛠️기술 스택
 * Node.js
 * express
 * Websocket
 
-## 💡구현 기능
+### 💡구현 기능
 - 시간에 따른 점수 획득
 - 스테이지 구분
 - 스테이지에 따른 점수 획득 구분 (스테이지 별 score per second 차등)
