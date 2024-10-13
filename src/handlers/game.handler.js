@@ -37,5 +37,14 @@ export const gameEnd = (uuid, payload) => {
   // DB에 저장한다고 가정하면 아래와 같이 쓸 수 있을 것
   // setResult(userId, score, timestamp)
 
+  if (score >= highScore) {
+    return {
+      broadcast: true,
+      status: 'success',
+      message: 'Game ended with new high score',
+      handler: 3,
+    };
+  }
+
   return { status: 'success', message: 'Game ended', handler: 3 };
 };
