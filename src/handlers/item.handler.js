@@ -18,7 +18,7 @@ export const handleItemPickup = (userId, payload) => {
     return { status: 'fail', message: 'No stages for this user' };
   }
 
-  const currentStage = currentStages.at(-1).id;
+  const currentStage = currentStages[currentStages.length - 1].id;
 
   // 현재 스테이지에서 나올 수 있는 아이템인지 검증
   const allowedItems = itemUnlocks.data.find((stage) => stage.stage_id === currentStage).item_ids;

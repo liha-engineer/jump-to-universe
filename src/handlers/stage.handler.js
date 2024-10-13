@@ -13,9 +13,9 @@ export const moveStageHandler = (userId, payload) => {
   }
 
   currentStages.sort((a, b) => a.id - b.id);
-  const currentStage = currentStages.at(-1);
+  const currentStage = currentStages[currentStages.length - 1];
 
-  // 클라이언트에서 보내주는 스테이지 정보가 서버에서 구한 값과 같은지 검증 - 여기서 쓰려고 payload 받는 것
+  // 클라이언트에서 보내주는 스테이지 정보가 서버에서 구한 값과 같은지 검증
   if (currentStage.id !== payload.currentStage) {
     return { status: 'fail', message: 'Current stage does not match' };
   }
@@ -30,6 +30,7 @@ export const moveStageHandler = (userId, payload) => {
     return { status: 'fail', message: 'Target stage not found' };
   }
 
+  // 스테이지 이동용 점수 검증
   const serverTime = Date.now(); // 현재 타임스탬프를 구함
   const userItems = getuserItems(userId);
   const totalScore = calculateTotalScore(currentStages, serverTime, true, userItems);
@@ -38,7 +39,7 @@ export const moveStageHandler = (userId, payload) => {
     return { status: 'fail', message: 'Invalid elapsed Time!' };
   }
 
-  // 유저의 다음 스테이지 정보 업데이트 + 현재 시간
+  // 유저의 다음 스테이지 정보 업데이트 + 현재 시간을 다음 스테이지의 타임스탬프로 찍음
   setStage(userId, payload.targetStage, serverTime);
   return { status: 'success', hanlder: 11 };
 };
