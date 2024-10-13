@@ -23,7 +23,6 @@ const sendEvent = (handlerId, payload) => {
     handlerId,
     payload,
   });
-  console.log('sendEvent의 payload 내용: ', payload);
 };
 
 export { sendEvent };
