@@ -1,11 +1,15 @@
 import { getGameAssets } from '../init/asset.js';
 
+// 스테이지 지속 시간을 기반으로 총 점수를 계산하는 함수
 export const calculateTotalScore = (stages, gameEndTime, isMoveStage, userItems) => {
   let totalScore = 0;
+
   const { stages: stageData, items: itemData } = getGameAssets();
   const stageTable = stageData.data;
 
   stages.forEach((stage, index) => {
+    
+
     let stageEndTime;
     if (index === stages.length - 1) {
       stageEndTime = gameEndTime;
@@ -14,10 +18,11 @@ export const calculateTotalScore = (stages, gameEndTime, isMoveStage, userItems)
       stageEndTime = stages[index + 1].timestamp;
     }
 
-    let stageDuration = (stageEndTime - stage.timestamp) / 1000;
-    const stageInfo = stageTable.find((stage) => stage.id === stage.id);
+    let stageDuration = (stageEndTime - stage.timestamp) / 100;
+
+    const stageInfo = stageTable.find((s) => s.id === stage.id);
     const scorePerSecond = stageInfo ? stageInfo.scorePerSecond : stageTable[0].id;
-  
+
     if (!isMoveStage && index === stages.length - 1) {
       stageDuration = Math.floor(stageDuration);
     } else {
