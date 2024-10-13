@@ -6,7 +6,6 @@ import { getGameAssets } from '../init/asset.js';
 import { calculateTotalScore } from '../utils/calculateTotalScore.js';
 
 export const moveStageHandler = (userId, payload) => {
-
   let currentStages = getStage(userId);
   if (!currentStages.length) {
     return { status: 'fail', message: 'No stages found for this user' };

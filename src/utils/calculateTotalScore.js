@@ -8,8 +8,6 @@ export const calculateTotalScore = (stages, gameEndTime, isMoveStage, userItems)
   const stageTable = stageData.data;
 
   stages.forEach((stage, index) => {
-    
-
     let stageEndTime;
     if (index === stages.length - 1) {
       stageEndTime = gameEndTime;

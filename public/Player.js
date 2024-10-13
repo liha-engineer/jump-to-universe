@@ -1,4 +1,4 @@
-import { jumpSound } from "./index.js";
+import { jumpSound } from './index.js';
 
 class Player {
   WALK_ANIMATION_TIMER = 200;

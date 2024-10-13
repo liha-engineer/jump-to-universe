@@ -39,7 +39,10 @@ export const handlerEvent = (io, socket, data) => {
 
   const response = handler(data.userId, data.payload);
   if (response.broadcast) {
-    io.emit('response', { status: 'broadcast', message: `${data.userId}' made New High Score! GG!`});
+    io.emit('response', {
+      status: 'broadcast',
+      message: `${data.userId}' made New High Score! GG!`,
+    });
     return;
   }
   socket.emit('responese', response);
