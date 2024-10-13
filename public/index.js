@@ -218,12 +218,14 @@ function gameLoop(currentTime) {
     score.update(deltaTime);
   }
 
+  const highscoreFromLocalStorage = Number(localStorage.getItem('highScore'))
+
   if (!gameover && cactiController.collideWith(player)) {
     gameover = true;
     defeatSound.volume = 0.2;
     defeatSound.play();
     score.setHighScore();
-    sendEvent(3, { timestamp : Date.now(), score : score.score });
+    sendEvent(3, { timestamp : Date.now(), score : score.score, highScore : highscoreFromLocalStorage});
     setupGameReset();
   }
   const collideWithItem = itemController.collideWith(player);
