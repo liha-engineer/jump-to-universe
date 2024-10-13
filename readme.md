@@ -1,12 +1,12 @@
 # 웹소켓 게임 만들기! 
 
-### Rtan RUN RUN! Jump to universe
+### Rtan RUN RUN! ~Jump to universe~
 
 ### 👥인원
 개인과제, 단독진행
 
 ## 📆프로젝트 기간
-2024.09.27 ~ 10.13
+2024.09.27 ~ 10.14
 
 ## 🛠️기술 스택
 * Node.js
