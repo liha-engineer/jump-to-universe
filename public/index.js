@@ -223,6 +223,7 @@ function gameLoop(currentTime) {
     defeatSound.volume = 0.2;
     defeatSound.play();
     score.setHighScore();
+    sendEvent(3, { timestamp : Date.now(), score : score.score });
     setupGameReset();
   }
   const collideWithItem = itemController.collideWith(player);
