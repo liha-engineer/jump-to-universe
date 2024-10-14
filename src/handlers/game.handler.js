@@ -41,7 +41,7 @@ export const gameEnd = (uuid, payload) => {
     return {
       broadcast: true,
       status: 'success',
-      message: 'Game ended with new high score',
+      message: `${uuid}' made New High Score! GG!`,
       handler: 3,
     };
   }
