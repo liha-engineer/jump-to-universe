@@ -35,6 +35,7 @@ export const handlerEvent = (io, socket, data) => {
   const handler = handlerMappings[data.handlerId];
   if (!handler) {
     socket.emit('response', { status: 'fail', message: 'Handler not found' });
+    return;
   }
 
   const response = handler(data.userId, data.payload);
